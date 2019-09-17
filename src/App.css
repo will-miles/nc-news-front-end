@@ -1,33 +1,133 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 5vw 5vw;
+  grid-template-areas:
+    'header currentUser'
+    'header navBar'
+    'articles articles';
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  grid-area: header;
+  text-align: left;
+  margin-top: 0;
+  font-size: 11vw;
+}
+.headerLogo {
+  max-width: 10vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.currentUser {
+  grid-area: currentUser;
+  display: grid;
+  grid-template-areas: 'name pic' 'username pic';
 }
 
-.App-link {
-  color: #61dafb;
+.navBar {
+  grid-area: navBar;
+  margin-top: 5vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.articles {
+  grid-area: articles;
+  text-align: left;
+}
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.articleList {
+  display: grid;
+  grid-template-areas:
+    'title title title title upBut downBut'
+    'title title title title votes votes'
+    'topic author time comments votes votes';
+}
+
+.articleTitle {
+  grid-area: title;
+}
+
+.articleUpBut {
+  grid-area: upBut;
+}
+
+.articleDownBut {
+  grid-area: downBut;
+}
+
+.articleVotes {
+  grid-area: votes;
+}
+
+.articleTopic {
+  grid-area: topic;
+}
+
+.articleAuthor {
+  grid-area: author;
+}
+
+.articleTime {
+  grid-area: time;
+}
+
+.articleComments {
+  grid-area: comments;
+}
+
+.articleAndComments {
+  padding-left: 3vw;
+  padding-right: 3vw;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: 'article commentList';
+}
+
+.singleArticle {
+  grid-area: article;
+}
+
+.commentList {
+  grid-area: commentList;
+}
+
+.commentCard {
+  display: grid;
+  grid-template-areas:
+    'commentAuthor commentUpvote commentDownVote'
+    'commentTime commentVotes commentVotes'
+    'commentBody commentBody commentBody';
+}
+
+.commentAuthor {
+  grid-area: commentAuthor;
+}
+
+.commentUpvote {
+  grid-area: commentUpvote;
+}
+
+.commentDownVote {
+  grid-area: commentDownVote;
+}
+
+.commentTime {
+  grid-area: commentTime;
+}
+
+.commentVotes {
+  text-align: center;
+  grid-area: commentVotes;
+}
+
+.commentBody {
+  grid-area: commentBody;
 }

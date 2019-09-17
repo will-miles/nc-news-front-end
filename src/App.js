@@ -1,15 +1,36 @@
-import React from 'react';
-import logo from './nc-logo.png';
+import React, { Component } from 'react';
+import Header from './components/Header';
+import CurrentUser from './components/CurrentUser';
+import Nav from './components/Nav';
+import Articles from './components/Articles';
+import Topics from './components/Topics';
+import SingleArticle from './components/SingleArticle';
+import { Router } from '@reach/router';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img></img>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    username: 'jessjelly'
+  };
+  render() {
+    const { username } = this.state;
+    return (
+      <div className="App">
+        <Header />
+        <CurrentUser username={username} changeUser={this.changeUser} />
+        <Nav />
+        <Router className="articles">
+          <Articles path="/" />
+          <Articles path="/topics/:topic" />
+          <Topics path="/topics" />
+          <SingleArticle path="/article/:id" username={username} />
+        </Router>
+      </div>
+    );
+  }
+  changeuser = username => {
+    this.setState({ username });
+  };
 }
 
 export default App;
