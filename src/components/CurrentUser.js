@@ -3,23 +3,25 @@ import * as api from '../api';
 
 class CurrentUser extends Component {
   state = {
-    newUser: '',
+    allUsers: [],
     user: {},
     isLoading: true
   };
 
   componentDidMount() {
     this.getUser();
+    this.getAllUsers();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.username !== this.props.username) {
       this.getUser();
+      this.getAllUsers();
     }
   }
 
   render() {
-    const { newUser, user, isLoading } = this.state;
+    const { allUsers, user, isLoading } = this.state;
     return (
       <div className="currentUser">
         {isLoading ? <h2>Loading...</h2> : ''}
@@ -27,33 +29,38 @@ class CurrentUser extends Component {
         <img className="userImg" src={user.avatar_url} alt="User avatar" />
         <p>{user.username}</p>
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="username"
-            className="newUserInput"
-            value={newUser}
-            onChange={this.handleChange}
-          ></input>
+          <select>
+            {allUsers.map(user => {
+              return (
+                <option key={user.username} value={user.username}>
+                  {user.username}
+                </option>
+              );
+            })}
+          </select>
           <button className="newUserSubmit">change user</button>
         </form>
       </div>
     );
   }
+  getAllUsers = () => {
+    api.fetchAllUsers().then(allUsers => {
+      this.setState({ allUsers });
+    });
+  };
+
   getUser = () => {
     const { username } = this.props;
     api.fetchUser(username).then(user => {
       this.setState({ user, isLoading: false });
     });
   };
-  handleChange = event => {
-    const { value } = event.target;
-    this.setState({ newUser: value });
-  };
+
   handleSubmit = event => {
     event.preventDefault();
-    const { newUser } = this.state;
-    this.props.changeUser(newUser);
-    this.setState({ newUser: '' });
+    event.persist();
+    const username = event.target[0].value;
+    this.props.changeUser(username);
   };
 }
 

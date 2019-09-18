@@ -4,6 +4,8 @@ import { Link } from '@reach/router';
 
 class Articles extends Component {
   state = {
+    sort_by: '',
+    order: '',
     articles: [],
     isLoading: true
   };
@@ -12,8 +14,12 @@ class Articles extends Component {
     this.getArticles();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.uri !== this.props.uri) {
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.uri !== this.props.uri ||
+      prevState.sort_by !== this.state.sort_by ||
+      prevState.order !== this.state.order
+    ) {
       this.getArticles();
     }
   }
@@ -23,6 +29,20 @@ class Articles extends Component {
     return (
       <div>
         {isLoading ? <h3>Loading...</h3> : ''}
+        <form onSubmit={this.handleSubmit}>
+          <select>
+            <option value="title">Title</option>
+            <option value="votes">Votes</option>
+            <option value="author">Author</option>
+            <option value="created_at">Date</option>
+            <option value="comment_count">Comments</option>
+          </select>
+          <select>
+            <option value="asc">ascending</option>
+            <option value="desc">decending</option>
+          </select>
+          <button>Sort</button>
+        </form>
         <ul>
           {articles.map(article => {
             return (
@@ -41,7 +61,9 @@ class Articles extends Component {
                 <p className="articleComments">
                   comments: {article.comment_count}
                 </p>
-                <p className="articleTime">{article.created_at}</p>
+                <p className="articleTime">
+                  {new Date(article.created_at).toUTCString().toString()}
+                </p>
                 <button className="articleUpBut">Up Vote</button>
                 <button className="articleDownBut">Down Vote</button>
               </li>
@@ -52,9 +74,17 @@ class Articles extends Component {
     );
   }
 
+  handleSubmit = event => {
+    event.preventDefault();
+    const sort_by = event.target[0].value;
+    const order = event.target[1].value;
+    this.setState({ sort_by, order });
+  };
+
   getArticles = () => {
     const { topic } = this.props;
-    api.fetchArticles(topic).then(articles => {
+    const { sort_by, order } = this.state;
+    api.fetchArticles(topic, sort_by, order).then(articles => {
       this.setState({ articles, isLoading: false });
     });
   };
