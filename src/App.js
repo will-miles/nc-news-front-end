@@ -28,7 +28,7 @@ class App extends Component {
       </div>
     );
   }
-  changeuser = username => {
+  changeUser = username => {
     this.setState({ username });
   };
 }

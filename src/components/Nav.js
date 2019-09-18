@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 
 class Nav extends Component {
-  state = {
-    users: []
-  };
+  componentDidMount() {}
+
   render() {
     return (
       <div className="navBar">
-        <select></select>
         <Link to="/">
           <button>All</button>
         </Link>

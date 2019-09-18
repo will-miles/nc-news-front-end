@@ -2,6 +2,12 @@ import axios from 'axios';
 
 const baseURL = 'https://w-miles-nc-news.herokuapp.com/api';
 
+export const fetchUser = username => {
+  return axios.get(`${baseURL}/users/${username}`).then(({ data }) => {
+    return data.user;
+  });
+};
+
 export const fetchArticles = topic => {
   return axios
     .get(`${baseURL}/articles`, { params: { topic } })
