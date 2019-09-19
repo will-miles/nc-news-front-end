@@ -2,10 +2,10 @@
   text-align: center;
   display: grid;
   grid-template-columns: 3fr 2fr;
-  grid-template-rows: 12vw 5vw;
+  grid-template-rows: 10vw 5vw;
   grid-template-areas:
     'header currentUser'
-    'header navBar'
+    'navBar navBar'
     'articles articles';
 }
 
@@ -13,25 +13,50 @@
   grid-area: header;
   text-align: left;
   margin-top: 0;
-  font-size: 11vw;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 10vw;
 }
 .headerLogo {
-  max-width: 10vw;
+  height: 10vw;
 }
 
 .currentUser {
   grid-area: currentUser;
   display: grid;
-  grid-template-areas: 'name pic' 'username pic' 'newUserInput newUserSubmit';
-  grid-template-rows: 5vh 5vh;
-  grid-template-columns: 3fr 1fr;
+  grid-template-areas: 'nameOfUser pic' 'username pic' 'changeUserForm changeUserForm';
+  grid-template-rows: 5vw 3vw 2vw;
+  grid-template-columns: 3fr;
+}
+
+.nameOfUser {
+  font-size: 4vw;
+  text-align: right;
+  font-weight: bold;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  grid-area: nameOfUser;
+}
+
+.username {
+  font-size: 2vw;
+  text-align: right;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  grid-area: username;
 }
 
 .userImg {
   grid-area: pic;
   /* position: relative;
   left: 45%; */
-  max-height: 10vh;
+  height: 8vw;
+}
+
+.changeUserForm {
+  grid-area: changeUserForm;
+  display: grid;
+  grid-template-areas: 'newUserInput newUserSubmit';
 }
 
 .newUserInput {
@@ -44,13 +69,31 @@
 
 .navBar {
   grid-area: navBar;
-  margin-top: auto;
-  margin-bottom: auto;
+  height: auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 .articles {
   grid-area: articles;
-  text-align: left;
+  text-align: center;
+}
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
 body {
@@ -62,7 +105,12 @@ ul {
 }
 
 .articleList {
-  margin-top: 5vh;
+  padding-inline-start: 4vw;
+  padding-inline-end: 4vw;
+}
+
+.article {
+  margin-top: 4vh;
   border: 2px red;
   border-style: solid;
   display: grid;
@@ -74,6 +122,8 @@ ul {
 
 .articleTitle {
   grid-area: title;
+  text-align: left;
+  padding-inline-start: 4vw;
 }
 
 .articleUpBut {
@@ -109,19 +159,42 @@ ul {
   padding-right: 3vw;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-areas: 'article commentList';
+  grid-template-areas: 'article newComment' 'article commentList';
 }
 
 .singleArticle {
   grid-area: article;
+  text-align: left;
+}
+
+.newComment {
+  grid-area: newComment;
+  display: grid;
+  padding-inline-start: 2vw;
+  grid-template-areas: 'commentInput' 'commentPost';
+}
+
+.commentInput {
+  grid-area: commentInput;
+  height: 10vh;
+}
+
+.commentPost {
+  grid-area: commentPost;
 }
 
 .commentList {
+  height: 60vh;
+  overflow: auto;
+  /* overscroll-behavior-y: contain; */
   grid-area: commentList;
+  padding-inline-start: 2vw;
+  text-align: left;
 }
 
 .commentCard {
   display: grid;
+  grid-template-columns: 70% 15% 15%;
   grid-template-areas:
     'commentAuthor commentUpvote commentDownVote'
     'commentTime commentVotes commentVotes'

@@ -39,3 +39,11 @@ export const fetchCommentData = id => {
     return data.comments;
   });
 };
+
+export const postNewComment = (id, username, body) => {
+  return axios
+    .post(`${baseURL}/articles/${id}/comments`, { username, body })
+    .then(({ data }) => {
+      return data.comment;
+    });
+};

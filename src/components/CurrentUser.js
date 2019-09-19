@@ -25,10 +25,10 @@ class CurrentUser extends Component {
     return (
       <div className="currentUser">
         {isLoading ? <h2>Loading...</h2> : ''}
-        <h3>{user.name}</h3>
+        <p className="nameOfUser">{user.name}</p>
         <img className="userImg" src={user.avatar_url} alt="User avatar" />
-        <p>{user.username}</p>
-        <form onSubmit={this.handleSubmit}>
+        <p className="username">{user.username}</p>
+        <form className="changeUserForm" onSubmit={this.handleSubmit}>
           <select>
             {allUsers.map(user => {
               return (
