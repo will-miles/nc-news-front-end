@@ -3,9 +3,10 @@ import logo from '../nc-logo.png';
 
 const Header = () => {
   return (
-    <h1 className="header">
-      <img className="headerLogo" src={logo} alt="logo"></img> NC News
-    </h1>
+    <div className="header">
+      <img className="headerLogo" src={logo} alt="logo"></img>
+      <h1>NC News</h1>
+    </div>
   );
 };
 

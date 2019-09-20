@@ -51,3 +51,7 @@ export const postNewComment = (id, username, body) => {
 export const patchVotes = (id, endpnt, inc) => {
   return axios.patch(`${baseURL}/${endpnt}/${id}`, inc);
 };
+
+export const deleteComment = id => {
+  return axios.delete(`${baseURL}/comments/${id}`);
+};

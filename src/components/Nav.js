@@ -13,8 +13,6 @@ class Nav extends Component {
         <Link to="/topics">
           <button>Topics</button>
         </Link>
-        <input placeholder="Search for acrticle"></input>
-        <button>Go</button>
       </div>
     );
   }

@@ -7,6 +7,7 @@ import Topics from './components/Topics';
 import SingleArticle from './components/SingleArticle';
 import { Router } from '@reach/router';
 import './App.css';
+import ErrorPage from './components/ErrorPage';
 
 class App extends Component {
   state = {
@@ -19,11 +20,12 @@ class App extends Component {
         <Header />
         <CurrentUser username={username} changeUser={this.changeUser} />
         <Nav />
-        <Router className="articles">
+        <Router className="main">
           <Articles path="/" />
           <Articles path="/topics/:topic" />
           <Topics path="/topics" />
           <SingleArticle path="/article/:id" username={username} />
+          <ErrorPage default />
         </Router>
       </div>
     );

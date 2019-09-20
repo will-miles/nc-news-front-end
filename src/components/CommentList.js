@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NewComment from './NewComment';
 import * as api from '../api';
 import Vote from './Vote';
+import Delete from './Delete';
 
 class CommentList extends Component {
   state = {
@@ -32,6 +33,12 @@ class CommentList extends Component {
                   {new Date(comment.created_at).toUTCString().toString()}
                 </p>
                 <p className="commentBody">{comment.body}</p>
+                <Delete
+                  username={username}
+                  author={comment.author}
+                  id={comment.comment_id}
+                  getCommentData={this.getCommentData}
+                />
               </li>
             );
           })}

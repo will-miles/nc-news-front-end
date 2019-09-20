@@ -29,9 +29,14 @@ class NewComment extends Component {
     event.preventDefault();
     const { id, username } = this.props;
     const { value } = this.state;
-    api.postNewComment(id, username, value).then(comment => {
-      this.props.addComment(comment);
-    });
+    api
+      .postNewComment(id, username, value)
+      .then(comment => {
+        this.props.addComment(comment);
+      })
+      .then(() => {
+        this.setState({ value: '' });
+      });
   };
 }
 

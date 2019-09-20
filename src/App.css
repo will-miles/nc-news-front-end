@@ -1,8 +1,8 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-columns: 3fr 2fr;
-  grid-template-rows: 10vw 5vw;
+  grid-template-columns: 4fr 2fr;
+  grid-template-rows: 10vw 50px;
   grid-template-areas:
     'header currentUser'
     'navBar navBar'
@@ -12,24 +12,44 @@
 .header {
   grid-area: header;
   text-align: left;
+  background-color: gray;
+  display: grid;
+  grid-template-columns: 10vw auto;
+  grid-template-areas: 'headerlogo h1';
+}
+
+.header h1 {
+  padding-left: 1vw;
   margin-top: 0;
   margin-block-start: 0;
   margin-block-end: 0;
   font-size: 10vw;
+  grid-area: h1;
+  color: white;
+  height: 10vw;
 }
+
 .headerLogo {
   height: 10vw;
 }
 
+.sortForm {
+  background-color: gray;
+  padding-bottom: 1vh;
+  padding-top: 1vh;
+}
 .currentUser {
   grid-area: currentUser;
   display: grid;
   grid-template-areas: 'nameOfUser pic' 'username pic' 'changeUserForm changeUserForm';
   grid-template-rows: 5vw 3vw 2vw;
   grid-template-columns: 3fr;
+  background-color: gray;
+  color: white;
 }
 
 .nameOfUser {
+  padding-right: 1vw;
   font-size: 4vw;
   text-align: right;
   font-weight: bold;
@@ -39,6 +59,7 @@
 }
 
 .username {
+  padding-right: 1vw;
   font-size: 2vw;
   text-align: right;
   margin-block-start: 0em;
@@ -48,9 +69,7 @@
 
 .userImg {
   grid-area: pic;
-  /* position: relative;
-  left: 45%; */
-  height: 8vw;
+  height: 7vw;
 }
 
 .changeUserForm {
@@ -68,13 +87,14 @@
 }
 
 .navBar {
+  background-color: gray;
   grid-area: navBar;
   height: auto;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
 }
 
-.articles {
+.main {
   grid-area: articles;
   text-align: center;
 }
@@ -114,10 +134,11 @@ ul {
   border: 2px red;
   border-style: solid;
   display: grid;
+  grid-template-columns: 10vw, 10vw, 10vw, 10vw, 10vw;
   grid-template-areas:
-    'title title title title voter voter'
-    'title title title title voter voter'
-    'topic author time comments voter voter';
+    'title title title title voter'
+    'title title title title voter'
+    'topic author time comments voter';
 }
 
 .articleTitle {
@@ -168,7 +189,7 @@ ul {
   padding-left: 3vw;
   padding-right: 3vw;
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-columns: 1fr 4fr 3fr;
   grid-template-areas: 'voter article newComment' 'voter article commentList';
 }
 
@@ -208,7 +229,11 @@ ul {
   grid-template-areas:
     'commentAuthor voter voter'
     'commentTime voter voter'
-    'commentBody commentBody commentBody';
+    'commentBody commentBody delete';
+}
+
+.delete {
+  grid-area: delete;
 }
 
 .commentAuthor {

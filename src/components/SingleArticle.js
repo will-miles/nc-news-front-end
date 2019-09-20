@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import CommentList from './CommentList';
 import * as api from '../api';
 import Vote from './Vote';
+import ErrorPage from './ErrorPage';
 
 class SingleArticle extends Component {
   state = {
+    err: null,
     article: null
   };
 
@@ -14,7 +16,8 @@ class SingleArticle extends Component {
 
   render() {
     const { id, username } = this.props;
-    const { article } = this.state;
+    const { err, article } = this.state;
+    if (err) return <ErrorPage err={err} />;
     return (
       <div className="articleAndComments">
         {article ? (
@@ -34,9 +37,16 @@ class SingleArticle extends Component {
   }
   getArticleData = () => {
     const { id } = this.props;
-    api.fetchArticleData(id).then(article => {
-      this.setState({ article });
-    });
+    api
+      .fetchArticleData(id)
+      .then(article => {
+        this.setState({ article });
+      })
+      .catch(err => {
+        this.setState({
+          err
+        });
+      });
   };
 }
 

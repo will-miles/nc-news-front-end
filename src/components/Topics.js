@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
+import ErrorPage from './ErrorPage';
 
 class Topics extends Component {
   state = {
+    err: null,
     topics: [],
     isLoading: true
   };
@@ -13,7 +15,8 @@ class Topics extends Component {
   }
 
   render() {
-    const { topics, isLoading } = this.state;
+    const { err, topics, isLoading } = this.state;
+    if (err) return <ErrorPage err={err} />;
     return (
       <div>
         {isLoading ? <h3>Loading...</h3> : ''}
@@ -33,9 +36,16 @@ class Topics extends Component {
     );
   }
   getTopics = () => {
-    api.fetchTopics().then(topics => {
-      this.setState({ topics, isLoading: false });
-    });
+    api
+      .fetchTopics()
+      .then(topics => {
+        this.setState({ topics, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({
+          err
+        });
+      });
   };
 }
 

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
 import Vote from './Vote';
+import ErrorPage from './ErrorPage';
 
 class Articles extends Component {
   state = {
+    err: null,
     sort_by: '',
     order: '',
     articles: [],
@@ -26,7 +28,8 @@ class Articles extends Component {
   }
 
   render() {
-    const { articles, isLoading } = this.state;
+    const { err, articles, isLoading } = this.state;
+    if (err) return <ErrorPage err={err} />;
     return (
       <div className="articles">
         <form className="sortForm" onSubmit={this.handleSubmit}>
@@ -85,9 +88,16 @@ class Articles extends Component {
   getArticles = () => {
     const { topic } = this.props;
     const { sort_by, order } = this.state;
-    api.fetchArticles(topic, sort_by, order).then(articles => {
-      this.setState({ articles, isLoading: false });
-    });
+    api
+      .fetchArticles(topic, sort_by, order)
+      .then(articles => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({
+          err
+        });
+      });
   };
 }
 
