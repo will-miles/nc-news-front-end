@@ -47,3 +47,7 @@ export const postNewComment = (id, username, body) => {
       return data.comment;
     });
 };
+
+export const patchVotes = (id, endpnt, inc) => {
+  return axios.patch(`${baseURL}/${endpnt}/${id}`, inc);
+};

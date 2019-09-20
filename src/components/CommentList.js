@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewComment from './NewComment';
 import * as api from '../api';
+import Vote from './Vote';
 
 class CommentList extends Component {
   state = {
@@ -22,15 +23,11 @@ class CommentList extends Component {
             return (
               <li key={comment.comment_id} className="commentCard">
                 <h4 className="commentAuthor">{comment.author}</h4>
-                <button className="commentUpVote">
-                  <i className="arrow up"></i>
-                </button>
-                <button className="commentDownVote">
-                  <i className="arrow down"></i>
-                </button>
-                <h4 className="commentVotes">
-                  {JSON.stringify(comment.votes)}
-                </h4>
+                <Vote
+                  id={comment.comment_id}
+                  votes={comment.votes}
+                  endpnt="comments"
+                />
                 <p className="commentTime">
                   {new Date(comment.created_at).toUTCString().toString()}
                 </p>

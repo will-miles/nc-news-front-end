@@ -115,9 +115,9 @@ ul {
   border-style: solid;
   display: grid;
   grid-template-areas:
-    'title title title title upBut downBut'
-    'title title title title votes votes'
-    'topic author time comments votes votes';
+    'title title title title voter voter'
+    'title title title title voter voter'
+    'topic author time comments voter voter';
 }
 
 .articleTitle {
@@ -126,16 +126,26 @@ ul {
   padding-inline-start: 4vw;
 }
 
-.articleUpBut {
-  grid-area: upBut;
+.upVote {
+  grid-area: upVote;
+  height: 5vh;
 }
 
-.articleDownBut {
-  grid-area: downBut;
+.downVote {
+  grid-area: downVote;
+  height: 5vh;
 }
 
-.articleVotes {
+.votes {
   grid-area: votes;
+}
+
+.vote {
+  grid-area: voter;
+  display: grid;
+  grid-template-areas:
+    'upVote downVote'
+    'votes votes';
 }
 
 .articleTopic {
@@ -158,8 +168,8 @@ ul {
   padding-left: 3vw;
   padding-right: 3vw;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: 'article newComment' 'article commentList';
+  grid-template-columns: 1fr 3fr 2fr;
+  grid-template-areas: 'voter article newComment' 'voter article commentList';
 }
 
 .singleArticle {
@@ -196,8 +206,8 @@ ul {
   display: grid;
   grid-template-columns: 70% 15% 15%;
   grid-template-areas:
-    'commentAuthor commentUpvote commentDownVote'
-    'commentTime commentVotes commentVotes'
+    'commentAuthor voter voter'
+    'commentTime voter voter'
     'commentBody commentBody commentBody';
 }
 
@@ -205,21 +215,8 @@ ul {
   grid-area: commentAuthor;
 }
 
-.commentUpvote {
-  grid-area: commentUpvote;
-}
-
-.commentDownVote {
-  grid-area: commentDownVote;
-}
-
 .commentTime {
   grid-area: commentTime;
-}
-
-.commentVotes {
-  text-align: center;
-  grid-area: commentVotes;
 }
 
 .commentBody {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Link } from '@reach/router';
+import Vote from './Vote';
 
 class Articles extends Component {
   state = {
@@ -46,22 +47,18 @@ class Articles extends Component {
         <ul className="articleList">
           {articles.map(article => {
             return (
-              <li key={`${article.article_id}up`} className="article">
+              <li key={article.article_id} className="article">
                 <Link
                   to={`/article/${article.article_id}`}
                   className="articleTitle"
                 >
                   <h3>{article.title}</h3>
                 </Link>
-                <button className="articleUpBut">
-                  <i className="arrow up"></i>
-                </button>
-                <button className="articleDownBut">
-                  <i className="arrow down"></i>
-                </button>
-                <p className="articleVotes">
-                  Votes: {JSON.stringify(article.votes)}
-                </p>
+                <Vote
+                  id={article.article_id}
+                  votes={article.votes}
+                  endpnt="articles"
+                />
                 <p className="articleTopic">{article.topic}</p>
                 <p className="articleAuthor">{article.author}</p>
                 <p className="articleComments">
@@ -77,10 +74,6 @@ class Articles extends Component {
       </div>
     );
   }
-  handleUpClick = event => {
-    event.persist();
-    console.dir(event);
-  };
 
   handleSubmit = event => {
     event.preventDefault();
