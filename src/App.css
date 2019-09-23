@@ -4,8 +4,9 @@
   text-align: center;
   display: grid;
   grid-template-columns: 4fr 2fr;
-  grid-template-rows: 18vw 50px;
+  grid-template-rows: 18vw auto 35px auto;
   grid-template-areas:
+    'header currentUser'
     'header currentUser'
     'navBar navBar'
     'articles articles';
@@ -46,7 +47,7 @@
   grid-area: currentUser;
   display: grid;
   grid-template-areas: 'nameOfUser pic' 'username pic' 'changeUserForm changeUserForm';
-  grid-template-rows: 5vw 3vw 2vw;
+  grid-template-rows: 5vw 3vw 35px;
   grid-template-columns: 3fr;
   background-color: gray;
   color: white;
@@ -84,6 +85,7 @@
 }
 
 .changeUserForm {
+  margin-bottom: 1vh;
   grid-area: changeUserForm;
   display: grid;
   min-height: 25px;
@@ -167,13 +169,14 @@ ul {
     'topic author time comments voter';
 }
 select {
-  font-size: 1.5vw;
+  font-size: 2vh;
   height: 35px;
   margin-right: 1vw;
   border-radius: 5px;
 }
 button {
-  font-size: 1.5vw;
+  min-width: 60px;
+  font-size: 2.5vh;
   height: 35px;
   margin-right: 1vw;
   border-radius: 5px;
@@ -338,5 +341,8 @@ button {
   }
   .article {
     display: block;
+  }
+  .currentUser {
+    grid-template-rows: 5vw 3vw 70px;
   }
 }
