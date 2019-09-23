@@ -3,7 +3,7 @@ import * as api from '../api';
 
 class NewComment extends Component {
   state = {
-    value: ''
+    value: null
   };
   render() {
     const { value } = this.state;
