@@ -1,8 +1,10 @@
 .App {
+  font-family: 'Montserrat', sans-serif;
+  background-color: grey;
   text-align: center;
   display: grid;
   grid-template-columns: 4fr 2fr;
-  grid-template-rows: 10vw 50px;
+  grid-template-rows: 18vw 50px;
   grid-template-areas:
     'header currentUser'
     'navBar navBar'
@@ -10,12 +12,14 @@
 }
 
 .header {
+  font-family: 'Raleway', sans-serif;
   grid-area: header;
   text-align: left;
   background-color: gray;
   display: grid;
   grid-template-columns: 10vw auto;
   grid-template-areas: 'headerlogo h1';
+  margin-bottom: 3vh;
 }
 
 .header h1 {
@@ -49,10 +53,14 @@
 }
 
 .nameOfUser {
+  overflow: hidden;
+  white-space: nowrap;
   padding-right: 1vw;
-  font-size: 4vw;
+  font-size: 3vw;
   text-align: right;
   font-weight: bold;
+  padding-top: auto;
+  padding-bottom: auto;
   margin-block-start: 0em;
   margin-block-end: 0em;
   grid-area: nameOfUser;
@@ -68,6 +76,9 @@
 }
 
 .userImg {
+  border-radius: 50%;
+  border: 2px red;
+  border-style: solid;
   grid-area: pic;
   height: 7vw;
 }
@@ -75,6 +86,7 @@
 .changeUserForm {
   grid-area: changeUserForm;
   display: grid;
+  min-height: 25px;
   grid-template-areas: 'newUserInput newUserSubmit';
 }
 
@@ -83,6 +95,7 @@
 }
 
 .newUserSubmit {
+  margin-right: 1vw;
   grid-area: newUserSubmit;
 }
 
@@ -90,11 +103,23 @@
   background-color: gray;
   grid-area: navBar;
   height: auto;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+}
+
+body {
+  background-color: grey;
+}
+
+.topicCard {
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 4vh;
+  border: 2px red;
+  border-style: solid;
 }
 
 .main {
+  padding-inline-start: 4vw;
+  padding-inline-end: 4vw;
   grid-area: articles;
   text-align: center;
 }
@@ -122,37 +147,60 @@ body {
 
 ul {
   list-style: none;
+  padding-inline-start: 0px;
 }
 
 .articleList {
-  padding-inline-start: 4vw;
-  padding-inline-end: 4vw;
+  padding-inline-start: 0px;
 }
 
 .article {
+  border-radius: 10px;
+  background-color: white;
   margin-top: 4vh;
   border: 2px red;
   border-style: solid;
   display: grid;
-  grid-template-columns: 10vw, 10vw, 10vw, 10vw, 10vw;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    'title title title title voter'
     'title title title title voter'
     'topic author time comments voter';
 }
-
+select {
+  font-size: 1.5vw;
+  height: 35px;
+  margin-right: 1vw;
+  border-radius: 5px;
+}
+button {
+  font-size: 1.5vw;
+  height: 35px;
+  margin-right: 1vw;
+  border-radius: 5px;
+}
 .articleTitle {
+  color: black;
   grid-area: title;
   text-align: left;
+}
+.articleTitle h3 {
   padding-inline-start: 4vw;
 }
 
 .upVote {
+  margin: 1vh;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 10px;
   grid-area: upVote;
   height: 5vh;
 }
 
 .downVote {
+  margin: 1vh;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 10px;
   grid-area: downVote;
   height: 5vh;
 }
@@ -162,8 +210,11 @@ ul {
 }
 
 .vote {
+  text-align: center;
+  font-weight: bold;
   grid-area: voter;
   display: grid;
+  grid-template-rows: 50px;
   grid-template-areas:
     'upVote downVote'
     'votes votes';
@@ -186,16 +237,22 @@ ul {
 }
 
 .articleAndComments {
+  color: white;
   padding-left: 3vw;
   padding-right: 3vw;
   display: grid;
   grid-template-columns: 1fr 4fr 3fr;
-  grid-template-areas: 'voter article newComment' 'voter article commentList';
+  grid-template-areas: 'voter article newComment';
 }
 
 .singleArticle {
   grid-area: article;
   text-align: left;
+}
+
+.singleArticle h3 {
+  color: white;
+  font-size: 3vh;
 }
 
 .newComment {
@@ -206,24 +263,38 @@ ul {
 }
 
 .commentInput {
+  border-radius: 10px;
   grid-area: commentInput;
-  height: 10vh;
+  height: 5vh;
+  margin: 1vh;
 }
 
 .commentPost {
+  width: 100px;
+  min-height: 40px;
+  margin-right: auto;
+  margin-left: auto;
   grid-area: commentPost;
+  align-content: center;
 }
 
 .commentList {
+  color: black;
   height: 60vh;
   overflow: auto;
-  /* overscroll-behavior-y: contain; */
   grid-area: commentList;
   padding-inline-start: 2vw;
   text-align: left;
 }
 
 .commentCard {
+  border: 2px red;
+  border-style: solid;
+  padding-right: 1.2vh;
+  padding-left: 1vh;
+  border-radius: 10px;
+  margin: 1vh;
+  background-color: white;
   display: grid;
   grid-template-columns: 70% 15% 15%;
   grid-template-areas:
@@ -246,4 +317,26 @@ ul {
 
 .commentBody {
   grid-area: commentBody;
+}
+
+.articleBody {
+  border: 2px red;
+  border-style: solid;
+  padding: 1vw;
+  border-radius: 10px;
+  color: black;
+  background-color: white;
+}
+
+@media only screen and (max-width: 60em) {
+  /* CSS rules here */
+  .articleAndComments {
+    display: block;
+  }
+  .changeUserForm {
+    display: block;
+  }
+  .article {
+    display: block;
+  }
 }

@@ -88,16 +88,9 @@ class Articles extends Component {
   getArticles = () => {
     const { topic } = this.props;
     const { sort_by, order } = this.state;
-    api
-      .fetchArticles(topic, sort_by, order)
-      .then(articles => {
-        this.setState({ articles, isLoading: false });
-      })
-      .catch(err => {
-        this.setState({
-          err
-        });
-      });
+    api.fetchArticles(topic, sort_by, order).then(articles => {
+      this.setState({ articles, isLoading: false });
+    });
   };
 }
 

@@ -23,7 +23,7 @@ class Topics extends Component {
         <ul>
           {topics.map(topic => {
             return (
-              <li key={topic.slug}>
+              <li className="topicCard" key={topic.slug}>
                 <Link to={`/topics/${topic.slug}`}>
                   <h3>{topic.slug}</h3>
                 </Link>
