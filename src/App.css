@@ -85,7 +85,6 @@
 }
 
 .changeUserForm {
-  margin-bottom: 1vh;
   grid-area: changeUserForm;
   display: grid;
   min-height: 25px;
@@ -344,5 +343,8 @@ button {
   }
   .currentUser {
     grid-template-rows: 5vw 3vw 70px;
+  }
+  .commentCard {
+    display: block;
   }
 }
