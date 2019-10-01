@@ -2,6 +2,10 @@
 
 Front-end website for a forum style website.
 
+deployed at:
+
+https://will-miles-nc-news.netlify.com/
+
 ## Getting started
 
 How to get the environment running on your machine:
